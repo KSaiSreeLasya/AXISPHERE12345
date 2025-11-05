@@ -485,9 +485,23 @@ function BlogPostCard({ post, index, isInView }: BlogPostCardProps) {
           {post.title}
         </h4>
 
-        <p className="text-sm text-muted-foreground leading-relaxed line-clamp-2 mb-3">
-          {post.excerpt}
-        </p>
+        {!showFull ? (
+          <>
+            <p className="text-sm text-muted-foreground leading-relaxed line-clamp-2 mb-3">
+              {post.excerpt}
+            </p>
+            <Button size="xs" className="mt-2 px-3 py-1" onClick={() => setShowFull(true)}>
+              Learn more
+            </Button>
+          </>
+        ) : (
+          <div className="text-sm text-muted-foreground leading-relaxed mb-3">
+            {renderPostContent(post.content || '')}
+            <Button size="xs" variant="ghost" className="mt-3 px-3 py-1 border" onClick={() => setShowFull(false)}>
+              View less
+            </Button>
+          </div>
+        )}
 
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
