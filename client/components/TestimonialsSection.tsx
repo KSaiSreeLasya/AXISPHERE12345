@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence, useInView } from 'framer-motion';
-import { ChevronLeft, ChevronRight, Play, Quote, Star } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Quote, Star } from 'lucide-react';
 
 interface Testimonial {
   id: string;
@@ -13,8 +13,6 @@ interface Testimonial {
   avatar: string;
   logo: string;
   rating: number;
-  hasVideo: boolean;
-  videoThumbnail?: string;
 }
 
 const testimonials: Testimonial[] = [
@@ -27,8 +25,6 @@ const testimonials: Testimonial[] = [
     avatar: '/placeholder.svg',
     logo: '/placeholder.svg',
     rating: 5,
-    hasVideo: true,
-    videoThumbnail: '/placeholder.svg',
   },
   {
     id: '2',
@@ -39,7 +35,6 @@ const testimonials: Testimonial[] = [
     avatar: '/placeholder.svg',
     logo: '/placeholder.svg',
     rating: 5,
-    hasVideo: false,
   },
   {
     id: '3',
@@ -50,8 +45,6 @@ const testimonials: Testimonial[] = [
     avatar: '/placeholder.svg',
     logo: '/placeholder.svg',
     rating: 5,
-    hasVideo: true,
-    videoThumbnail: '/placeholder.svg',
   },
   {
     id: '4',
@@ -62,7 +55,6 @@ const testimonials: Testimonial[] = [
     avatar: '/placeholder.svg',
     logo: '/placeholder.svg',
     rating: 5,
-    hasVideo: false,
   },
   {
     id: '5',
@@ -73,8 +65,6 @@ const testimonials: Testimonial[] = [
     avatar: '/placeholder.svg',
     logo: '/placeholder.svg',
     rating: 5,
-    hasVideo: true,
-    videoThumbnail: '/placeholder.svg',
   },
 ];
 
@@ -191,39 +181,10 @@ export default function TestimonialsSection() {
               >
                 <div className="relative aspect-video rounded-2xl overflow-hidden bg-luxury-800 border border-gold-500/20">
                   <img
-                    src={currentTestimonial.hasVideo ? currentTestimonial.videoThumbnail : currentTestimonial.avatar}
+                    src={currentTestimonial.avatar}
                     alt={currentTestimonial.name}
                     className="w-full h-full object-cover"
                   />
-                  
-                  {currentTestimonial.hasVideo && (
-                    <motion.div
-                      initial={{ scale: 0 }}
-                      animate={{ scale: 1 }}
-                      transition={{ delay: 0.5, type: 'spring', stiffness: 300 }}
-                      className="absolute inset-0 flex items-center justify-center"
-                    >
-                      <motion.button
-                        className="bg-gold-500 text-white p-6 rounded-full shadow-glow-gold group-hover:shadow-glow-gold transition-all duration-300"
-                        whileHover={{ scale: 1.1 }}
-                        whileTap={{ scale: 0.95 }}
-                        animate={{
-                          boxShadow: [
-                            '0 0 20px rgba(212, 175, 55, 0.3)',
-                            '0 0 30px rgba(212, 175, 55, 0.5)',
-                            '0 0 20px rgba(212, 175, 55, 0.3)',
-                          ],
-                        }}
-                        transition={{
-                          duration: 2,
-                          repeat: Infinity,
-                          ease: 'easeInOut',
-                        }}
-                      >
-                        <Play size={32} className="fill-current ml-1" />
-                      </motion.button>
-                    </motion.div>
-                  )}
                 </div>
 
                 {/* Company Logo */}
