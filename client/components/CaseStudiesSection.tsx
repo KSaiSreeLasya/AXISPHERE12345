@@ -242,14 +242,14 @@ function CaseStudyCard({ study, index, isInView, isHovered, onHover, onLeave }: 
         >
           <motion.div
             initial={{ scale: 0, rotate: -90 }}
-            animate={{ 
-              scale: isHovered ? 1 : 0, 
-              rotate: isHovered ? 0 : -90 
+            animate={{
+              scale: isHovered ? 1 : 0,
+              rotate: isHovered ? 0 : -90
             }}
             transition={{ duration: 0.5, type: 'spring', stiffness: 300 }}
             className="bg-gold-500 text-white p-4 rounded-full shadow-glow-gold"
           >
-            <Play size={24} className="fill-current" />
+            <ExternalLink size={20} className="fill-current" />
           </motion.div>
         </motion.div>
 
