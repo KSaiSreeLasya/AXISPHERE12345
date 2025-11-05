@@ -33,13 +33,31 @@ export default function CertificationsSection() {
   };
 
   return (
-    <section id="certifications" className="cert-section py-24 bg-gray-50 text-center">
+    <section id="certifications" className={`cert-section py-24 text-center ${darkMode ? 'bg-luxury-900 text-white' : 'bg-gray-50 text-gray-900'}`}>
       <div className="container mx-auto px-4">
-        <h2 className="text-4xl font-bold text-gray-800 mb-4">Our Certifications</h2>
-        <p className="text-gray-600 max-w-2xl mx-auto mb-16">
-          Axisphere Mediaworx LLP is recognized globally for its commitment to quality,
-          security, and excellence through internationally accredited standards.
-        </p>
+        <div className="flex items-center justify-between max-w-3xl mx-auto mb-6">
+          <div className="text-left">
+            <h2 className={`text-4xl font-bold mb-2 ${darkMode ? 'text-white' : 'text-gray-800'}`}>Our Certifications</h2>
+            <p className={`${darkMode ? 'text-gray-300' : 'text-gray-600'} max-w-2xl`}>
+              Axisphere Mediaworx LLP is recognized globally for its commitment to quality,
+              security, and excellence through internationally accredited standards.
+            </p>
+          </div>
+
+          <div className="ml-4">
+            <Button
+              variant="ghost"
+              size="sm"
+              className="flex items-center gap-2"
+              onClick={() => setDarkMode((s) => !s)}
+              aria-pressed={darkMode}
+              aria-label="Toggle certifications theme"
+            >
+              {darkMode ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
+              <span className="text-sm">{darkMode ? 'Light' : 'Dark'}</span>
+            </Button>
+          </div>
+        </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-12 justify-center items-center">
           {certifications.map((cert) => (
