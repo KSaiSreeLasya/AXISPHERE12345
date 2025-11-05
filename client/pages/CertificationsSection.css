@@ -55,6 +55,21 @@
   align-items: center;
 }
 
+/* Dark mode overrides for certifications section */
+.cert-section.dark .flip-card-front,
+.cert-section.dark .flip-card-back {
+  background: transparent;
+  border-color: rgba(255, 255, 255, 0.06);
+}
+
+.cert-section.dark .flip-card-front {
+  background: linear-gradient(145deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+}
+
+.cert-section.dark .flip-card-back {
+  background: linear-gradient(145deg, rgba(0,0,0,0.6), rgba(0,0,0,0.65));
+}
+
 .flip-card-front img {
   width: auto; /* no fixed width */
   height: auto;
@@ -75,4 +90,4 @@
 
 a {
   text-decoration: none;
-} 
+}
