@@ -1,8 +1,6 @@
 import Navigation from "@/components/Navigation";
 import HeroSection from "@/components/HeroSection";
 import ServicesSection from "@/components/ServicesSection";
-import CaseStudiesSection from "@/components/CaseStudiesSection";
-import TestimonialsSection from "@/components/TestimonialsSection";
 import CertificationsSection from "@/pages/CertificationsSection";
 
 import AboutSection from "@/components/AboutSection";
