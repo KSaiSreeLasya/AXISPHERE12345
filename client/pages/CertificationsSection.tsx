@@ -1,11 +1,19 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./CertificationsSection.css";
 import { Button } from "@/components/ui/button";
 import { Sun, Moon } from "lucide-react";
 
 export default function CertificationsSection() {
   const [flippedId, setFlippedId] = useState<number | null>(null);
-  const [darkMode, setDarkMode] = useState(false);
+  const [darkMode, setDarkMode] = useState<boolean>(false);
+
+  useEffect(() => {
+    const getDark = () => document.documentElement.classList.contains('dark');
+    setDarkMode(getDark());
+    const onTheme = () => setDarkMode(getDark());
+    window.addEventListener('theme-change', onTheme);
+    return () => window.removeEventListener('theme-change', onTheme);
+  }, []);
 
   const certifications = [
     {
