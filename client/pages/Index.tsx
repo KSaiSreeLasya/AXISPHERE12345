@@ -165,14 +165,6 @@ export default function Index() {
                 </li>
                 <li>
                   <a
-                    href="#work"
-                    className="hover:text-gold-400 transition-colors"
-                  >
-                    Our Work
-                  </a>
-                </li>
-                <li>
-                  <a
                     href="#insights"
                     className="hover:text-gold-400 transition-colors"
                   >
