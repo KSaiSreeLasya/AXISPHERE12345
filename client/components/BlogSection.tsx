@@ -201,6 +201,7 @@ interface FeaturedPostCardProps {
 
 function FeaturedPostCard({ post }: FeaturedPostCardProps) {
   const [isHovered, setIsHovered] = useState(false);
+  const [showFull, setShowFull] = useState(false);
 
   return (
     <motion.article
@@ -252,8 +253,9 @@ function FeaturedPostCard({ post }: FeaturedPostCardProps) {
           <Button
             className="bg-white/20 hover:bg-white/30 text-white border border-white/30 rounded-full px-6 py-2 backdrop-blur-sm"
             size="sm"
+            onClick={() => setShowFull(true)}
           >
-            Read More
+            Learn more
           </Button>
         </motion.div>
       </div>
@@ -279,9 +281,20 @@ function FeaturedPostCard({ post }: FeaturedPostCardProps) {
           {post.title}
         </h3>
 
-        <p className="text-muted-foreground leading-relaxed mb-6">
-          {post.excerpt}
-        </p>
+        {!showFull ? (
+          <>
+            <p className="text-muted-foreground leading-relaxed mb-4">
+              {post.excerpt}
+            </p>
+            <Button size="sm" className="px-4 py-2" onClick={() => setShowFull(true)}>
+              Learn more
+            </Button>
+          </>
+        ) : (
+          <div className="text-muted-foreground leading-relaxed mb-6 whitespace-pre-line">
+            {post.content}
+          </div>
+        )}
 
         {/* Tags */}
         <div className="flex flex-wrap gap-2 mb-6">
