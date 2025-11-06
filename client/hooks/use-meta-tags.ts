@@ -21,9 +21,15 @@ export function useMetaTags(config: MetaTagsConfig) {
     document.title = config.title;
 
     // Update or create meta tags
-    const updateMetaTag = (name: string, content: string, isProperty = false) => {
+    const updateMetaTag = (
+      name: string,
+      content: string,
+      isProperty = false,
+    ) => {
       const attribute = isProperty ? "property" : "name";
-      let tag = document.querySelector(`meta[${attribute}="${name}"]`) as HTMLMetaElement | null;
+      let tag = document.querySelector(
+        `meta[${attribute}="${name}"]`,
+      ) as HTMLMetaElement | null;
 
       if (!tag) {
         tag = document.createElement("meta");
@@ -44,7 +50,11 @@ export function useMetaTags(config: MetaTagsConfig) {
 
     // Open Graph tags
     updateMetaTag("og:title", config.ogTitle || config.title, true);
-    updateMetaTag("og:description", config.ogDescription || config.description, true);
+    updateMetaTag(
+      "og:description",
+      config.ogDescription || config.description,
+      true,
+    );
     updateMetaTag("og:url", config.ogUrl || window.location.href, true);
     if (config.ogImage) {
       updateMetaTag("og:image", config.ogImage, true);
@@ -52,7 +62,10 @@ export function useMetaTags(config: MetaTagsConfig) {
 
     // Twitter tags
     updateMetaTag("twitter:title", config.twitterTitle || config.title);
-    updateMetaTag("twitter:description", config.twitterDescription || config.description);
+    updateMetaTag(
+      "twitter:description",
+      config.twitterDescription || config.description,
+    );
     updateMetaTag("twitter:card", "summary_large_image");
     if (config.twitterImage) {
       updateMetaTag("twitter:image", config.twitterImage);
@@ -60,7 +73,9 @@ export function useMetaTags(config: MetaTagsConfig) {
 
     // Canonical URL
     if (config.canonical) {
-      let canonicalLink = document.querySelector('link[rel="canonical"]') as HTMLLinkElement | null;
+      let canonicalLink = document.querySelector(
+        'link[rel="canonical"]',
+      ) as HTMLLinkElement | null;
       if (!canonicalLink) {
         canonicalLink = document.createElement("link");
         canonicalLink.rel = "canonical";

@@ -105,7 +105,16 @@ export default function Seo({
     } else if (script) {
       script.remove();
     }
-  }, [title, description, canonicalPath, keywords, ogImage, twitterImage, robots, structuredData]);
+  }, [
+    title,
+    description,
+    canonicalPath,
+    keywords,
+    ogImage,
+    twitterImage,
+    robots,
+    structuredData,
+  ]);
 
   return null;
 }
