@@ -28,7 +28,7 @@ export function createServer() {
           res.setHeader("Content-Type", "text/plain");
         }
       },
-    })
+    }),
   );
 
   // Example API routes
