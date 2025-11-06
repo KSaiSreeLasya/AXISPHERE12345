@@ -1,6 +1,9 @@
 {
   "name": "Axisphere",
   "short_name": "Axisphere",
+  "id": "/",
+  "lang": "en",
+  "dir": "ltr",
   "description": "Axisphere — Luxury AI Marketing Agency for intelligent design, automation, and measurable growth.",
   "start_url": "/",
   "scope": "/",
@@ -8,32 +11,13 @@
   "background_color": "#ffffff",
   "theme_color": "#000000",
   "orientation": "any",
+  "categories": ["business", "marketing", "technology"],
   "icons": [
-    {
-      "src": "/favicon-16x16.png",
-      "sizes": "16x16",
-      "type": "image/png"
-    },
-    {
-      "src": "/favicon-32x32.png",
-      "sizes": "32x32",
-      "type": "image/png"
-    },
-    {
-      "src": "/favicon-48x48.png",
-      "sizes": "48x48",
-      "type": "image/png"
-    },
-    {
-      "src": "/favicon-64x64.png",
-      "sizes": "64x64",
-      "type": "image/png"
-    },
-    {
-      "src": "/favicon-96x96.png",
-      "sizes": "96x96",
-      "type": "image/png"
-    },
+    { "src": "/favicon-16x16.png", "sizes": "16x16", "type": "image/png" },
+    { "src": "/favicon-32x32.png", "sizes": "32x32", "type": "image/png" },
+    { "src": "/favicon-48x48.png", "sizes": "48x48", "type": "image/png" },
+    { "src": "/favicon-64x64.png", "sizes": "64x64", "type": "image/png" },
+    { "src": "/favicon-96x96.png", "sizes": "96x96", "type": "image/png" },
     {
       "src": "/favicon-192x192.png",
       "sizes": "192x192",
