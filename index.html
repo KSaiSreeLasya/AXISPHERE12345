@@ -3,7 +3,6 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
     <title>Axisphere</title>
 
     <!-- ✅ Modern SVG favicon (preferred by modern browsers) -->
@@ -57,6 +56,26 @@
     <!-- ✅ Google Tag Manager -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-W6GJKFQG3V"></script>
     <script src="/g.js"></script>
+
+    <!-- ✅ Apollo Website Tracker -->
+    <script>
+      function initApollo() {
+        var n = Math.random().toString(36).substring(7),
+          o = document.createElement("script");
+        o.src =
+          "https://assets.apollo.io/micro/website-tracker/tracker.iife.js?nocache=" +
+          n;
+        o.async = true;
+        o.defer = true;
+        o.onload = function () {
+          window.trackingFunctions.onLoad({
+            appId: "690855cd4451ad0021021cad",
+          });
+        };
+        document.head.appendChild(o);
+      }
+      initApollo();
+    </script>
   </head>
 
   <body>
