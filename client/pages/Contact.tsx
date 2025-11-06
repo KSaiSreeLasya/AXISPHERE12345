@@ -6,9 +6,10 @@ export default function Contact() {
   return (
     <div className="min-h-screen bg-background">
       <Seo
-        title="Contact Axisphere | AI Marketing Experts"
-        description="Start an AI‑powered growth plan��get a tailored strategy for automation, performance marketing, and brand scaling."
+        title="Contact Axisphere | AI Marketing Experts – Free Strategy Consultation"
+        description="Start your AI-powered growth journey with a free consultation. Get a tailored marketing strategy for automation, performance optimization, and brand scaling."
         canonicalPath="/contact"
+        keywords="contact us, get in touch, consultation, marketing strategy, free quote, business inquiry, support, contact form, customer service, partnership opportunities"
       />
       <Navigation />
       <main className="pt-24">

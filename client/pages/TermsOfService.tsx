@@ -1,8 +1,16 @@
 import { Link } from "react-router-dom";
+import Seo from "@/components/Seo";
 
 export default function TermsOfService() {
   return (
     <div className="min-h-screen bg-background">
+      <Seo
+        title="Terms of Service | Axisphere – User Agreement & Legal Terms"
+        description="Review Axisphere's terms of service to understand your rights and responsibilities when using our AI marketing platform and services."
+        canonicalPath="/terms"
+        keywords="terms of service, user agreement, legal terms, service conditions, terms and conditions, website terms, user rights, service agreement"
+        robots="index, follow, noarchive"
+      />
       {/* Hero */}
       <section className="relative overflow-hidden bg-gradient-to-br from-luxury-50 via-luxury-100 to-luxury-200 dark:from-luxury-950 dark:via-luxury-900 dark:to-luxury-800">
         <div className="container mx-auto px-6 py-16">

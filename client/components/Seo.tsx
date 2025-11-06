@@ -4,6 +4,10 @@ interface SeoProps {
   title: string;
   description: string;
   canonicalPath?: string; // e.g. "/services"
+  keywords?: string;
+  ogImage?: string;
+  twitterImage?: string;
+  robots?: string;
   structuredData?: object | object[]; // JSON-LD
 }
 
@@ -49,20 +53,36 @@ export default function Seo({
   title,
   description,
   canonicalPath = "/",
+  keywords,
+  ogImage = "https://www.axisphere.in/favicon-512x512.png",
+  twitterImage = "https://www.axisphere.in/favicon-512x512.png",
+  robots = "index, follow",
   structuredData,
 }: SeoProps) {
   useEffect(() => {
     document.title = title;
     upsertMeta("description", description);
 
-    // Basic Open Graph + Twitter cards
+    // Additional SEO meta tags
+    if (keywords) {
+      upsertMeta("keywords", keywords);
+    }
+    upsertMeta("robots", robots);
+
+    // Open Graph tags
     upsertProperty("og:title", title);
     upsertProperty("og:description", description);
     upsertProperty("og:type", "website");
     upsertProperty("og:url", `${SITE_URL}${canonicalPath}`);
+    upsertProperty("og:image", ogImage);
+    upsertProperty("og:site_name", "Axisphere");
+
+    // Twitter tags
     upsertMeta("twitter:card", "summary_large_image");
     upsertMeta("twitter:title", title);
     upsertMeta("twitter:description", description);
+    upsertMeta("twitter:image", twitterImage);
+    upsertMeta("twitter:site", "@axisphere");
 
     // Canonical
     upsertLink("canonical", `${SITE_URL}${canonicalPath}`);
@@ -85,7 +105,16 @@ export default function Seo({
     } else if (script) {
       script.remove();
     }
-  }, [title, description, canonicalPath, structuredData]);
+  }, [
+    title,
+    description,
+    canonicalPath,
+    keywords,
+    ogImage,
+    twitterImage,
+    robots,
+    structuredData,
+  ]);
 
   return null;
 }

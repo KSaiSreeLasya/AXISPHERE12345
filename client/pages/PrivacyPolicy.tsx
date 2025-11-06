@@ -1,8 +1,16 @@
 import { Link } from "react-router-dom";
+import Seo from "@/components/Seo";
 
 export default function PrivacyPolicy() {
   return (
     <div className="min-h-screen bg-background">
+      <Seo
+        title="Privacy Policy | Axisphere – Data Protection & Information Security"
+        description="Read Axisphere's privacy policy to understand how we collect, use, and protect your personal information. Your data security is our priority."
+        canonicalPath="/privacy-policy"
+        keywords="privacy policy, data protection, information security, GDPR, personal data, privacy statement, data privacy, user information protection"
+        robots="index, follow, noarchive"
+      />
       {/* Hero */}
       <section className="relative overflow-hidden bg-gradient-to-br from-luxury-50 via-luxury-100 to-luxury-200 dark:from-luxury-950 dark:via-luxury-900 dark:to-luxury-800">
         <div className="container mx-auto px-6 py-16">
