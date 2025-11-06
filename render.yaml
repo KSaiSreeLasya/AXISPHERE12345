@@ -2,33 +2,9 @@ services:
   - type: web
     name: axisphere
     env: node
-    plan: starter
-    buildCommand: npm run build:client
-    startCommand: node -r esbuild-register server/index.ts
+    region: oregon
+    buildCommand: npm run build
+    startCommand: npm start
     envVars:
       - key: NODE_ENV
         value: production
-    headers:
-      - path: /site.webmanifest
-        headers:
-          - key: Content-Type
-            value: application/manifest+json
-      - path: /robots.txt
-        headers:
-          - key: Content-Type
-            value: text/plain
-      - path: /sitemap.xml
-        headers:
-          - key: Content-Type
-            value: application/xml
-      - path: /*
-        headers:
-          - key: X-Content-Type-Options
-            value: nosniff
-          - key: X-Frame-Options
-            value: SAMEORIGIN
-          - key: X-XSS-Protection
-            value: "1; mode=block"
-    routes:
-      - path: /api/*
-        destination: /.../functions/api/:splat
