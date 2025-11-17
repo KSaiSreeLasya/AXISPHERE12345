@@ -196,8 +196,12 @@ export default function InvoiceDisplay({
       >
         <div className="flex justify-between items-start mb-12 border-b-2 border-gold-500 pb-6">
           <div>
-            <h1 className="text-3xl font-bold text-gold-600">Axisphere</h1>
-            <p className="text-sm text-gray-600 mt-2">
+            <img
+              src="https://cdn.builder.io/api/v1/image/assets%2Fa31d1200efef4b74975fb36c4890f8c1%2Fbecb7a0855134344b5adf3fe9fcd377e?format=webp&width=800"
+              alt="Axisphere Logo"
+              className="h-16 w-auto mb-2"
+            />
+            <p className="text-sm text-gray-600">
               Axisphere Media Worx LLP
             </p>
             <p className="text-xs text-gray-500 mt-1">
