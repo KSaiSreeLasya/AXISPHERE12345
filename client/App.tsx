@@ -19,6 +19,7 @@ import CertificationsSection from "./pages/CertificationsSection";
 import Invoice from "./pages/Invoice";
 import AdminLogin from "./pages/AdminLogin";
 import AdminDashboard from "./pages/AdminDashboard";
+import AdminInvoices from "./pages/AdminInvoices";
 
 const queryClient = new QueryClient();
 
@@ -41,6 +42,7 @@ const App = () => (
           <Route path="/terms" element={<TermsOfService />} />
           <Route path="/admin/login" element={<AdminLogin />} />
           <Route path="/admin/dashboard" element={<AdminDashboard />} />
+          <Route path="/admin/invoices" element={<AdminInvoices />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
@@ -60,5 +62,5 @@ if (rootElement) {
   if (!window.__reactRoot) {
     window.__reactRoot = createRoot(rootElement);
   }
-  window.__reactRoot.render(<App />);
+  window.__rootRoot.render(<App />);
 }
