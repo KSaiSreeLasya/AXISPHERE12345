@@ -176,55 +176,36 @@ export default function InvoiceDisplay({
     try {
       const html2pdf = (await import("html2pdf.js")).default;
 
-      // Page 1: Invoice
-      const invoiceElement = invoicePage.current;
-      if (!invoiceElement) return;
+      // Create a container with both pages
+      const container = document.createElement("div");
 
-      const opt1 = {
+      // Page 1: Invoice
+      if (invoicePage.current) {
+        const invoiceClone = invoicePage.current.cloneNode(true) as HTMLElement;
+        container.appendChild(invoiceClone);
+      }
+
+      // Page 2: Scope (with page break)
+      if (selectedScope.length > 0 && scopePage.current) {
+        const pageBreak = document.createElement("div");
+        pageBreak.style.pageBreakBefore = "always";
+        pageBreak.style.breakBefore = "page";
+        container.appendChild(pageBreak);
+
+        const scopeClone = scopePage.current.cloneNode(true) as HTMLElement;
+        container.appendChild(scopeClone);
+      }
+
+      const options = {
         margin: 10,
         filename: `${invoice.invoiceNumber}.pdf`,
         image: { type: "jpeg", quality: 0.98 },
-        html2canvas: { scale: 2 },
+        html2canvas: { scale: 2, useCORS: true, allowTaint: true },
         jsPDF: { unit: "mm", format: "a4", orientation: "portrait" },
         pagebreak: { mode: ["avoid-all", "css", "legacy"] },
       };
 
-      // Generate first page with invoice
-      const pdf = html2pdf()
-        .set(opt1)
-        .from(invoiceElement)
-        .toPdf();
-
-      // Add second page with scope if there are selected features
-      if (selectedScope.length > 0 && scopePage.current) {
-        const pdf2 = await pdf
-          .get("pdf")
-          .then((pdfObj: any) => {
-            pdfObj.addPage();
-            return pdfObj;
-          });
-
-        await html2pdf()
-          .set({
-            ...opt1,
-            pagebreak: { mode: ["avoid-all", "css", "legacy"] },
-          })
-          .from(scopePage.current)
-          .toPdf()
-          .get("pdf")
-          .then((scopePdf: any) => {
-            const pageCount = scopePdf.internal.pages.length;
-            for (let i = 1; i < pageCount; i++) {
-              const page = scopePdf.internal.pages[i];
-              pdf2.addPage(page[0], page[1]);
-            }
-          });
-
-        await pdf2
-          .save(`${invoice.invoiceNumber}.pdf`);
-      } else {
-        await pdf.save(`${invoice.invoiceNumber}.pdf`);
-      }
+      await html2pdf().set(options).from(container).save();
     } catch (error) {
       console.error("Error generating PDF:", error);
     }
