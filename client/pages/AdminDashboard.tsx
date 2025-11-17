@@ -111,15 +111,9 @@ export default function AdminDashboard() {
               <h1 className="text-4xl font-bold text-foreground mb-2">
                 Admin Dashboard
               </h1>
-              <p className="text-muted-foreground">
-                Welcome, {user?.email}
-              </p>
+              <p className="text-muted-foreground">Welcome, {user?.email}</p>
             </div>
-            <Button
-              onClick={handleLogout}
-              variant="outline"
-              className="gap-2"
-            >
+            <Button onClick={handleLogout} variant="outline" className="gap-2">
               <LogOut className="w-4 h-4" />
               Logout
             </Button>

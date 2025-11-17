@@ -201,7 +201,11 @@ export default function InvoiceDisplay({
         filename: `${invoice.invoiceNumber}.pdf`,
         image: { type: "jpeg" as const, quality: 0.98 },
         html2canvas: { scale: 2, useCORS: true, allowTaint: true },
-        jsPDF: { unit: "mm" as const, format: "a4", orientation: "portrait" as const },
+        jsPDF: {
+          unit: "mm" as const,
+          format: "a4",
+          orientation: "portrait" as const,
+        },
         pagebreak: { mode: ["avoid-all", "css", "legacy"] },
       };
 
@@ -407,14 +411,16 @@ export default function InvoiceDisplay({
               Project Scope & Features
             </h2>
             <p className="text-sm text-gray-600">
-              Invoice Number: <span className="font-semibold">{invoice.invoiceNumber}</span>
+              Invoice Number:{" "}
+              <span className="font-semibold">{invoice.invoiceNumber}</span>
             </p>
           </div>
 
           {/* Client Info */}
           <div className="mb-8 p-4 bg-gray-50 rounded-lg">
             <p className="text-sm text-gray-700">
-              <span className="font-semibold">Client:</span> {invoice.clientName}
+              <span className="font-semibold">Client:</span>{" "}
+              {invoice.clientName}
             </p>
             {invoice.clientCompany && (
               <p className="text-sm text-gray-700">
