@@ -153,12 +153,7 @@ export default function PricingSection() {
                 >
                   Get Started
                 </a>
-                <Link
-                  to={`/invoice?package=${encodeURIComponent(p.name)}`}
-                  className="inline-flex w-full items-center justify-center rounded-full border border-gold-500 bg-transparent px-6 py-3 font-semibold text-gold-600 transition-colors hover:bg-gold-50 dark:hover:bg-gold-950/20"
-                >
-                  Generate Invoice
-                </Link>
+                <
               </div>
             </div>
           ))}
