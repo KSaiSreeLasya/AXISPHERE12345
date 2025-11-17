@@ -62,5 +62,5 @@ if (rootElement) {
   if (!window.__reactRoot) {
     window.__reactRoot = createRoot(rootElement);
   }
-  window.__rootRoot.render(<App />);
+  window.__reactRoot.render(<App />);
 }
