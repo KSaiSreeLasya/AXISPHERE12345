@@ -1,4 +1,5 @@
 import { Check, Sparkles, Rocket, Building2 } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const plans = [
   {
