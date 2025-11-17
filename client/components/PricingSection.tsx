@@ -1,4 +1,5 @@
 import { Check, Sparkles, Rocket, Building2 } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const plans = [
   {
@@ -145,13 +146,19 @@ export default function PricingSection() {
                 </ul>
               </div>
 
-              <div className="mt-6">
+              <div className="mt-6 space-y-3">
                 <a
                   href="#contact"
                   className="inline-flex w-full items-center justify-center rounded-full bg-gold-500 px-6 py-3 font-semibold text-white transition-colors hover:bg-gold-600"
                 >
                   Get Started
                 </a>
+                <Link
+                  to={`/invoice?package=${encodeURIComponent(p.name)}`}
+                  className="inline-flex w-full items-center justify-center rounded-full border border-gold-500 bg-transparent px-6 py-3 font-semibold text-gold-600 transition-colors hover:bg-gold-50 dark:hover:bg-gold-950/20"
+                >
+                  Generate Invoice
+                </Link>
               </div>
             </div>
           ))}

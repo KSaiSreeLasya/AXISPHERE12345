@@ -16,8 +16,8 @@ export default function Index() {
   return (
     <div className="min-h-screen bg-background">
       <Seo
-        title="Luxury AI Marketing Agency | Axisphere – AI-Powered Design & Automation"
-        description="Axisphere elevates luxury brands with AI—intelligent design, strategic automation, and measurable growth strategies. Elevate your premium brand with AI-powered marketing solutions."
+        title="Axisphere – Luxury AI Marketing Agency | Premium Digital Experiences"
+        description="Axisphere delivers luxury-focused AI marketing, advanced automation, and premium digital branding solutions designed to elevate businesses into world-class brands."
         canonicalPath="/"
         keywords="AI marketing agency, luxury brand marketing, AI design, marketing automation, growth strategy, premium branding, digital marketing, AI-powered design, luxury marketing, brand elevation"
         structuredData={{

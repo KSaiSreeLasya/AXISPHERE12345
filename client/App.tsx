@@ -16,7 +16,7 @@ import CaseStudies from "./pages/CaseStudies";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
 import CertificationsSection from "./pages/CertificationsSection";
-
+import Invoice from "./pages/Invoice";
 
 const queryClient = new QueryClient();
 
@@ -33,7 +33,7 @@ const App = () => (
           <Route path="/case-studies" element={<CaseStudies />} />
           <Route path="/about" element={<About />} />
           <Route path="/certifications" element={<CertificationsSection />} />
-
+          <Route path="/invoice" element={<Invoice />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
           <Route path="/terms" element={<TermsOfService />} />
@@ -45,4 +45,16 @@ const App = () => (
   </QueryClientProvider>
 );
 
-createRoot(document.getElementById("root")!).render(<App />);
+declare global {
+  interface Window {
+    __reactRoot?: any;
+  }
+}
+
+const rootElement = document.getElementById("root");
+if (rootElement) {
+  if (!window.__reactRoot) {
+    window.__reactRoot = createRoot(rootElement);
+  }
+  window.__reactRoot.render(<App />);
+}

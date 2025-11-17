@@ -6,9 +6,9 @@ import Seo from "@/components/Seo";
 
 export default function CertificationsSection() {
   const seoProps = {
-    title: "ISO Certifications | Axisphere – Quality & Security Standards",
+    title: "Axisphere Certifications – Trusted AI & Marketing Excellence",
     description:
-      "Axisphere holds ISO 27001:2022 and ISO 9001:2015 certifications, demonstrating commitment to information security, quality management, and excellence.",
+      "Axisphere is certified in global standards for AI, automation, quality, and digital marketing—ensuring premium solutions built on trust and expertise.",
     canonicalPath: "/certifications",
     keywords:
       "ISO certification, ISO 27001, ISO 9001, security certification, quality management, certified company, data security, compliance, quality standards",

@@ -6,8 +6,8 @@ export default function Services() {
   return (
     <div className="min-h-screen bg-background">
       <Seo
-        title="AI Marketing Services & Automation | Axisphere – Growth Strategies"
-        description="AI-driven branding, performance marketing, predictive analytics, and marketing automation services to optimize customer acquisition, retention, and ROI. Expert digital marketing solutions."
+        title="AI Automation & Branding for Premium Businesses | Axisphere"
+        description="Automate your business workflows, enhance brand quality, and drive engagement with Axisphere's AI-first marketing and automation solutions."
         canonicalPath="/services"
         keywords="AI marketing services, marketing automation, performance marketing, predictive analytics, brand strategy, digital marketing, content marketing, marketing solutions, growth marketing, conversion optimization"
       />
