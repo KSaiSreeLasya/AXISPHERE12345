@@ -215,6 +215,8 @@ export default function Index() {
           <div className="border-t border-border pt-8 flex flex-col md:flex-row justify-between items-center">
             <div className="text-foreground/60 dark:text-white/60 text-sm">
               © 2024 Axisphere Media Worx LLP. All rights reserved.
+              <br/>
+              Designed and Developed by Axisphere Mediaworx
             </div>
             <div className="flex gap-6 text-foreground/60 dark:text-white/60 text-sm">
               <Link
