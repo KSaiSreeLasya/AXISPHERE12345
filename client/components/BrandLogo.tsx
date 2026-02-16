@@ -43,7 +43,7 @@ export default function BrandLogo({
       alt={alt}
       className={`${className} object-contain`}
       loading="eager"
-      fetchPriority="high"
+      fetchpriority="high"
       decoding="async"
     />
   );
