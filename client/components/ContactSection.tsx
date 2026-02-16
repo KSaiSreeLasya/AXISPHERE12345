@@ -21,8 +21,23 @@ export default function ContactSection() {
   // Initialize EmailJS
   useEffect(() => {
     const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+    const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+    const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+
+    console.log("=== EmailJS Initialization ===");
+    console.log("Public Key exists:", !!publicKey);
+    console.log("Service ID exists:", !!serviceId);
+    console.log("Template ID exists:", !!templateId);
+
     if (publicKey) {
-      emailjs.init(publicKey);
+      try {
+        emailjs.init(publicKey);
+        console.log("✓ EmailJS initialized successfully");
+      } catch (error) {
+        console.error("✗ Failed to initialize EmailJS:", error);
+      }
+    } else {
+      console.warn("⚠️ EmailJS Public Key is not set!");
     }
   }, []);
 
@@ -38,7 +53,11 @@ export default function ContactSection() {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    console.log("=== Contact Form Submitted ===");
+    console.log("Form data:", form);
+
     if (!form.name || !form.email) {
+      console.warn("⚠️ Form validation failed: Name or email missing");
       Swal.fire({ icon: "warning", title: "Please fill name and email" });
       return;
     }
@@ -46,6 +65,9 @@ export default function ContactSection() {
     try {
       const supabase = getSupabaseClient();
       if (!supabase) {
+        console.error(
+          "✗ Supabase client not configured. Missing VITE_SUPABASE_URL or VITE_SUPABASE_ANON_KEY"
+        );
         Swal.fire({
           icon: "error",
           title: "Server not configured",
@@ -54,8 +76,10 @@ export default function ContactSection() {
         setLoading(false);
         return;
       }
+      console.log("✓ Supabase client initialized");
 
       if (!form.consent) {
+        console.warn("⚠️ Consent not accepted");
         await Swal.fire({
           icon: "warning",
           title: "Please accept the Privacy Policy",
@@ -63,6 +87,7 @@ export default function ContactSection() {
         setLoading(false);
         return;
       }
+      console.log("✓ Privacy policy consent accepted");
 
       const metadata: Record<string, any> = {};
       try {
@@ -74,8 +99,12 @@ export default function ContactSection() {
       const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
       const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
 
+      console.log("=== Email Sending Process ===");
+      console.log("Service ID:", serviceId || "NOT SET");
+      console.log("Template ID:", templateId || "NOT SET");
+
       if (serviceId && templateId) {
-        await emailjs.send(serviceId, templateId, {
+        const emailData = {
           name: form.name.trim(),
           email: form.email.trim(),
           phone: form.phone.trim() || "Not provided",
@@ -83,11 +112,30 @@ export default function ContactSection() {
           subject: form.subject.trim() || "General Inquiry",
           message: form.message.trim(),
           time: new Date().toLocaleString(),
-        });
+        };
+
+        console.log("Sending email with data:", emailData);
+
+        try {
+          const response = await emailjs.send(serviceId, templateId, emailData);
+          console.log("✓ Email sent successfully:", response);
+        } catch (emailError: any) {
+          console.error("✗ Email sending failed:", emailError);
+          console.error("Error status:", emailError.status);
+          console.error("Error text:", emailError.text);
+          throw new Error(
+            `Email failed to send: ${emailError.text || emailError.message}`
+          );
+        }
+      } else {
+        console.warn(
+          "⚠️ Skipping email: Missing Service ID or Template ID"
+        );
       }
 
       // Save to Supabase
-      const { error } = await supabase.from("contact_messages").insert({
+      console.log("=== Saving to Supabase ===");
+      const supabaseData = {
         name: form.name.trim(),
         email: form.email.trim(),
         phone: form.phone.trim() || null,
@@ -96,8 +144,19 @@ export default function ContactSection() {
         message: form.message.trim(),
         consent: !!form.consent,
         metadata,
-      });
-      if (error) throw error;
+      };
+      console.log("Supabase data:", supabaseData);
+
+      const { error } = await supabase
+        .from("contact_messages")
+        .insert(supabaseData);
+
+      if (error) {
+        console.error("✗ Supabase error:", error);
+        throw error;
+      }
+
+      console.log("✓ Data saved to Supabase successfully");
       Swal.fire({
         icon: "success",
         title: "Thanks!",
@@ -114,12 +173,20 @@ export default function ContactSection() {
         consent: false,
       });
     } catch (err: any) {
+      const errorMessage =
+        err?.message ||
+        err?.text ||
+        "We couldn't save your request right now. Please try again.";
+
+      console.error("=== Form Submission Error ===");
+      console.error("Error:", err);
+      console.error("Error Message:", errorMessage);
+      console.error("Full Error Object:", JSON.stringify(err, null, 2));
+
       Swal.fire({
         icon: "error",
         title: "Submission failed",
-        text:
-          (err?.message as string) ||
-          "We couldn't save your request right now. Please try again.",
+        text: errorMessage,
       });
     } finally {
       setLoading(false);
