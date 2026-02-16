@@ -1,8 +1,9 @@
 import { Mail, Phone, MapPin, Building } from "lucide-react";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import type React from "react";
 import Swal from "sweetalert2";
+import emailjs from "@emailjs/browser";
 import { getSupabaseClient } from "@/lib/supabase";
 
 export default function ContactSection() {
@@ -16,6 +17,14 @@ export default function ContactSection() {
     consent: false,
   });
   const [loading, setLoading] = useState(false);
+
+  // Initialize EmailJS
+  useEffect(() => {
+    const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+    if (publicKey) {
+      emailjs.init(publicKey);
+    }
+  }, []);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
@@ -61,10 +70,28 @@ export default function ContactSection() {
         params.forEach((v, k) => (metadata[k] = v));
       } catch {}
 
+      // Send email via EmailJS
+      const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+      const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+
+      if (serviceId && templateId) {
+        await emailjs.send(serviceId, templateId, {
+          name: form.name.trim(),
+          email: form.email.trim(),
+          phone: form.phone.trim() || "Not provided",
+          company: form.company.trim() || "Not provided",
+          subject: form.subject.trim() || "General Inquiry",
+          message: form.message.trim(),
+          time: new Date().toLocaleString(),
+        });
+      }
+
+      // Save to Supabase
       const { error } = await supabase.from("contact_messages").insert({
         name: form.name.trim(),
         email: form.email.trim(),
         phone: form.phone.trim() || null,
+        company: form.company.trim() || null,
         subject: form.subject.trim() || null,
         message: form.message.trim(),
         consent: !!form.consent,
