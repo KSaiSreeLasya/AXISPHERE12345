@@ -26,7 +26,8 @@ const blogPosts: BlogPost[] = [
   {
     id: "axisphere-case-study",
     title:
-      "Transforming Insurance Sales with Axisphere’s AI-Powered Digital Marketing",
+      "Transforming Insurancehave making changes in about page, etc.. but not showing as update pr button
+       Sales with Axisphere’s AI- Powered Digital Marketing",
     excerpt:
       "Axisphere implemented an end-to-end AI performance-marketing solution for a mid-sized insurer, improving lead quality, personalization, onboarding speed, and ROI. Crafting excellence through AI-driven marketing and automation.",
     author: {
